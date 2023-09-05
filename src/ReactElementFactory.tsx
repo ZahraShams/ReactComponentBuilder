@@ -21,7 +21,7 @@ export const ReactElementFactory = function () {
     } else if (Content.type === 'ListComponent') {
       return new TreeNode(<List key={key}  li={Content?.props?.li} />);
     } else if (Content.type === 'ButtonComponent') {
-      return new TreeNode(<Button key={key}  text={Content?.props?.text} />);
+      return new TreeNode(<Button  {...Content?.props} key={key}  />);
     } else if (Content.type === 'ParagraphComponent') {
       return new TreeNode(<Paragraph  key={key}  text={Content?.props?.text} />);
     } else if (Content.type === 'BoxComponent') {
@@ -49,9 +49,9 @@ export const ReactElementFactory = function () {
           ];
           i++;
         }
-      return new TreeNode(<Modal  key={key}  {...Content?.props}>{children}</Modal>);
+      return new TreeNode(<Modal  keyy={key}  {...Content?.props}>{children}</Modal>);
     } else if (Content.type === 'LinkComponent') {
-      return new TreeNode(<Link text={Content?.props?.text} />);
+      return new TreeNode(<Link  {...Content?.props}/>);
     } else {
       console.log('whattt');
     }

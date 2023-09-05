@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import { ReactElementFactory } from './ReactElementFactory';
@@ -8,10 +8,27 @@ export function AppProvider({ children }) {
   const js2 = data2;
   let factory = new ReactElementFactory();
   factory.generateTree(js2);
+  const [modals,setModals] = useState({})
+  const [triggeredModal,setTriggeredModal] = useState()
 
-  const modals = ['s', 's'];
+  const addModal = function (key:String,state) {
+    modals[key] = { state };
+    setModals(modals);
 
-  const handleOpenModal = function () {};
+    return modals[key];
+  };
+
+
+
+
+
+  const handleOpenModal = function (modalKey) {
+    console.log('raised with key', modalKey);
+      modals[modalKey].state.isOpen = !modals[modalKey].state.isOpen;
+      setModals(modals);
+      setTriggeredModal({ key: modalKey, state: modals[modalKey].state });
+
+  };
 
   return (
     <AppContext.Provider
@@ -19,6 +36,8 @@ export function AppProvider({ children }) {
         modals: modals,
         onOpenModals: handleOpenModal,
         elementTree: factory.root.value,
+        addModal:addModal,
+        triggeredModal:triggeredModal
       }}
     >
       {children}
