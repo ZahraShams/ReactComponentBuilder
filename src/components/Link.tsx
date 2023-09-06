@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { AllowedEventsKeys, ComponentState, useApp } from '../AppContext';
+import { useApp } from '../AppContext';
+import { ComponentState } from '../ComponentState';
+import { AllowedEventsKeys } from '../AllowedEventsKeys';
 import { ComponentProp } from './ComponentProp';
 
 function Link(props:ComponentProp) {

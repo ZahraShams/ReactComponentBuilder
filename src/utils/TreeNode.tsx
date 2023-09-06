@@ -1,4 +1,4 @@
-import { AllowedEventsKeys } from '../AppContext';
+import { AllowedEventsKeys } from '../AllowedEventsKeys';
 import { ConversionalComponents } from '../components';
 import Box from '../components/Box';
 import Button from '../components/Button';

@@ -3,35 +3,18 @@ import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import NodeFactory from './utils/NodeFactory';
 import { Actions } from './utils/TreeNode';
-export const AppContext = createContext<AppContextType|null>(null);
-export class ComponentState{
-  isOpen:boolean=false
-  isFocused:boolean=false
-}
-type AppSubsrcibersLookUp = { [key: string]: { state: ComponentState } };
-export type AppContextType = {
-  subscribers: AppSubsrcibersLookUp | undefined;
-  handleOpenEvent: (key:string) => void;
-  elementTree: JSX.Element;
-  addComponentToSubscribers: (
-    key: string,
-    state: ComponentState
-  ) => AppSubsrcibersLookUp;
-  triggeredComponent: triggeredComponent;
-  handleEvent: (key: AllowedEventsKeys) => void;
-};
+import { ComponentState } from './ComponentState';
+import { AppContextType } from './AppContextType';
 
-// export type AllowedEventsKeys =
-// | 'onOpen'
-// | 'onHover'
-export enum AllowedEventsKeys {
-  onClick = 'onClick',
-  onHover = 'onHover',
-}
+
+
+
+
+export const AppContext = createContext<AppContextType|null>(null);
+export type AppSubsrcibersLookUp = { [key: string]: { state: ComponentState } };
 export enum AllowedCallbacks {
   openModal = 'openModal',
 }
-
 
 export function AppProvider({ children }) {
   const js = data1;
@@ -39,9 +22,6 @@ export function AppProvider({ children }) {
   const elementTree = NodeFactory.createTreeNode(js2).getElement();
   const [subscribers, setSubscribers] = useState({});
   const [triggeredComponent, setTriggeredComponent] = useState();
-
-
-
 
   const addComponentSubscribersDictionary: (
     key: string,
