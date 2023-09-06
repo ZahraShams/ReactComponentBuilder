@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import { useApp } from '../AppContext';
 
 function Button(props) {

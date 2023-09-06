@@ -8,26 +8,21 @@ export function AppProvider({ children }) {
   const js2 = data2;
   let factory = new ReactElementFactory();
   factory.generateTree(js2);
-  const [modals,setModals] = useState({})
-  const [triggeredModal,setTriggeredModal] = useState()
+  const [modals, setModals] = useState({});
+  const [triggeredModal, setTriggeredModal] = useState();
 
-  const addModal = function (key:String,state) {
+  const addModal = function (key: String, state) {
     modals[key] = { state };
     setModals(modals);
 
     return modals[key];
   };
 
-
-
-
-
   const handleOpenModal = function (modalKey) {
     console.log('raised with key', modalKey);
-      modals[modalKey].state.isOpen = !modals[modalKey].state.isOpen;
-      setModals(modals);
-      setTriggeredModal({ key: modalKey, state: modals[modalKey].state });
-
+    modals[modalKey].state.isOpen = !modals[modalKey].state.isOpen;
+    setModals(modals);
+    setTriggeredModal({ key: modalKey, state: modals[modalKey].state });
   };
 
   return (
@@ -36,8 +31,8 @@ export function AppProvider({ children }) {
         modals: modals,
         onOpenModals: handleOpenModal,
         elementTree: factory.root.value,
-        addModal:addModal,
-        triggeredModal:triggeredModal
+        addModal: addModal,
+        triggeredModal: triggeredModal,
       }}
     >
       {children}

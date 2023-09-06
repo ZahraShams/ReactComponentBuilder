@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Paragraph({text}) {
     return <h1>{text}</h1>;

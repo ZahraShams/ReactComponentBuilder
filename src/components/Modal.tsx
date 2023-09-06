@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useApp } from '../AppContext';
 
 function Modal({ isOpen, width, height, children, keyy }) {

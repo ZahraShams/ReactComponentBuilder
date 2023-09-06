@@ -1,13 +1,9 @@
-import './App.css'
+import './App.css';
 
-import { AppProvider, useApp, AppContext } from './AppContext';
+import { AppProvider } from './AppContext';
 import RenderResult from './screens/RenderResult';
 
 function App() {
-
- 
-
-
   return (
     <>
       <AppProvider>
@@ -17,4 +13,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
