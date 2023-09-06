@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../AppContext';
 
-function Modal(props) {
+function Modal(props:ComponentProp) {
   const { isOpen, width, height, children, nodeKey } = props;
   const { triggeredComponent } = useApp();
   const [isModalOpen, setIsModalOpen] = useState(isOpen);

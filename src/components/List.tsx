@@ -1,4 +1,4 @@
-function List(props) {
+function List(props:ComponentProp) {
   const { li = [] } = props;
   return (
     <ul>

@@ -1,7 +1,7 @@
 
-function Paragraph(props) {
+function Paragraph(props:ComponentProp) {
   const { text } = props;
-    return <h1>{text}</h1>;
+    return <p>{text}</p>;
   }
 
 export default Paragraph

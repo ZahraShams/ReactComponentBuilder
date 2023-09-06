@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ComponentState, useApp } from '../AppContext';
 
-function Link(props) {
+function Link(props:ComponentProp) {
   const { handleOpenEvent, addComponentToLookup, subscribers } = useApp();
   const { text, actionOnComponentKey } = props;
 

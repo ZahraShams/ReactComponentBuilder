@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ComponentState, useApp } from '../AppContext';
 
-function Button(props) {
+function Button(props: ComponentProp) {
   const { handleOpenEvent, addComponentToLookup, subscribers } = useApp();
   const { text, actionOnComponentKey } = props;
 
@@ -10,13 +10,11 @@ function Button(props) {
       addComponentToLookup(actionOnComponentKey, new ComponentState());
   }, []);
 
-  const handleOnClick= ()=>{
+  const handleOnClick = () => {
     handleOpenEvent(actionOnComponentKey);
+  };
 
-
-  }
-
-    return <button onClick={handleOnClick}>{text}</button>;
-  }
+  return <button onClick={handleOnClick}>{text}</button>;
+}
 
 export default Button

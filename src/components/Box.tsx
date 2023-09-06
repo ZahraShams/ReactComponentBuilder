@@ -1,5 +1,5 @@
 
-function Box(props) {
+function Box(props:ComponentProp) {
   const { children, borderSize } = props;
   return <div style={{ border: `${borderSize} solid red` }}>{...children}</div>;
 }
