@@ -1,39 +1,53 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import NodeFactory from './utils/NodeFactory';
 export const AppContext = createContext();
 
-
+export class ComponentState{
+  isOpen:boolean=false
+  isFocused:boolean=false
+}
+type AppSubsrcibersLookUp = { [key: string]: { state: ComponentState } };
+interface AppContexValue {
+  subscribers: AppSubsrcibersLookUp | undefined;
+  onOpenModals: handleOpenModal;
+  elementTree: JSX.Element;
+  addComponentToSubscribers: (key: string, state:ComponentState) => AppSubsrcibersLookUp;
+  triggeredComponent: triggeredComponent;
+}
 
 export function AppProvider({ children }) {
   const js = data1;
   const js2 = data2;
   const elementTree = NodeFactory.createTreeNode(js2).getElement();
-  const [modals, setModals] = useState({});
-  const [triggeredModal, setTriggeredModal] = useState();
+  const [subscribers, setSubscribers] = useState({});
+  const [triggeredComponent, setTriggeredComponent] = useState();
 
-  const addModal = function (key: String, state) {
-    modals[key] = { state };
-    setModals(modals);
-    return modals[key];
+  const addComponentSubscribersDictionary: (
+    key: string,
+    state: ComponentState
+  ) => any = function (key: string, state: ComponentState) {
+    subscribers[key] = { state };
+    setSubscribers(subscribers);
+    return subscribers[key];
   };
 
-  const handleOpenModal = function (modalKey) {
-    console.log('raised with key', modalKey);
-    modals[modalKey].state.isOpen = !modals[modalKey].state.isOpen;
-    setModals(modals);
-    setTriggeredModal({ key: modalKey, state: modals[modalKey].state });
+  const handleOpenEvent = function (componentKey:string) {
+    console.log('raised with key', componentKey);
+    subscribers[componentKey].state.isOpen = !subscribers[componentKey].state.isOpen;
+    setSubscribers(subscribers);
+    setTriggeredComponent({ key: componentKey, state: subscribers[componentKey].state });
   };
 
   return (
     <AppContext.Provider
       value={{
-        modals: modals,
-        onOpenModals: handleOpenModal,
+        subscribers: subscribers,
+        handleOpenEvent: handleOpenEvent,
         elementTree: elementTree,
-        addModal: addModal,
-        triggeredModal: triggeredModal,
+        addComponentToLookup: addComponentSubscribersDictionary,
+        triggeredComponent: triggeredComponent,
       }}
     >
       {children}

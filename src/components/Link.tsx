@@ -1,13 +1,18 @@
-import { useApp } from '../AppContext';
+import { useEffect } from 'react';
+import { ComponentState, useApp } from '../AppContext';
 
 function Link(props) {
-  const { onOpenModals } = useApp();
-  const { text, actionOnComponentKey, key } = props;
+  const { handleOpenEvent, addComponentToLookup, subscribers } = useApp();
+  const { text, actionOnComponentKey } = props;
 
-  const handleOnClick= ()=>{
-    onOpenModals(actionOnComponentKey);
-  }
-  return <a   onClick={handleOnClick}>{text}</a>;
+  useEffect(() => {
+    if (actionOnComponentKey && !subscribers[actionOnComponentKey])
+      addComponentToLookup(actionOnComponentKey, new ComponentState());
+  }, []);
+  const handleOnClick = () => {
+    handleOpenEvent(actionOnComponentKey);
+  };
+  return <a onClick={handleOnClick}>{text}</a>;
 }
 
-export default Link
+export default Link;

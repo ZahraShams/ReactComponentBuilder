@@ -1,11 +1,17 @@
-import { useApp } from '../AppContext';
+import { useEffect } from 'react';
+import { ComponentState, useApp } from '../AppContext';
 
 function Button(props) {
-  const { onOpenModals } = useApp();
+  const { handleOpenEvent, addComponentToLookup, subscribers } = useApp();
   const { text, actionOnComponentKey } = props;
 
+  useEffect(() => {
+    if (actionOnComponentKey && !subscribers[actionOnComponentKey])
+      addComponentToLookup(actionOnComponentKey, new ComponentState());
+  }, []);
+
   const handleOnClick= ()=>{
-    onOpenModals(actionOnComponentKey);
+    handleOpenEvent(actionOnComponentKey);
 
 
   }
