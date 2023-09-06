@@ -1,12 +1,15 @@
-interface ComponentProp {
-    actionOnComponentKey: string
-    text: string
-    borderSize: string
-    li: string[]
+import { Actions } from "../utils/TreeNode"
 
-    isOpen: boolean
-    width: string
-    height: string
-    nodeKey: string
+export class  ComponentProp {
+    actionOnComponentKey!: string
+    text!: string
+    borderSize!: string
+    li!: string[]
+
+    isOpen!: boolean
+    width!: string
+    height!: string
+    nodeKey!: string
+    actions!: Actions[]
 }
 

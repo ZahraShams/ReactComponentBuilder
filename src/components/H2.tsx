@@ -1,3 +1,4 @@
+import { ComponentProp } from "./ComponentProp";
 
 function H2(props:ComponentProp) {
   let { text, styles } = props;

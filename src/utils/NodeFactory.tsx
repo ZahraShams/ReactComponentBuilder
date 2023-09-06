@@ -1,5 +1,5 @@
-import { NodeLookup } from "./NodeLookup";
-import { ITreeNode } from "./TreeNode";
+import { NodeLookup } from './NodeLookup';
+import { ITreeNode } from './TreeNode';
 
 export default class NodeFactory {
   static createTreeNode(data: any, key = 'root'): ITreeNode {
@@ -14,6 +14,10 @@ export default class NodeFactory {
         i++;
       }
     }
-    return new NodeLookup[Content.type](key, Content?.props,children);
+    return new NodeLookup[Content.type](
+      key,
+      Content?.props,
+      children
+    );
   }
 }

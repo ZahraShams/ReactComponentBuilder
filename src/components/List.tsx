@@ -1,3 +1,5 @@
+import { ComponentProp } from "./ComponentProp";
+
 function List(props:ComponentProp) {
   const { li = [] } = props;
   return (

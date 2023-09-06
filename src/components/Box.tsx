@@ -1,3 +1,4 @@
+import { ComponentProp } from "./ComponentProp";
 
 function Box(props:ComponentProp) {
   const { children, borderSize } = props;

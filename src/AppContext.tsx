@@ -2,20 +2,36 @@ import React, { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import NodeFactory from './utils/NodeFactory';
-export const AppContext = createContext();
-
+import { Actions } from './utils/TreeNode';
+export const AppContext = createContext<AppContextType|null>(null);
 export class ComponentState{
   isOpen:boolean=false
   isFocused:boolean=false
 }
 type AppSubsrcibersLookUp = { [key: string]: { state: ComponentState } };
-interface AppContexValue {
+export type AppContextType = {
   subscribers: AppSubsrcibersLookUp | undefined;
-  onOpenModals: handleOpenModal;
+  handleOpenEvent: (key:string) => void;
   elementTree: JSX.Element;
-  addComponentToSubscribers: (key: string, state:ComponentState) => AppSubsrcibersLookUp;
+  addComponentToSubscribers: (
+    key: string,
+    state: ComponentState
+  ) => AppSubsrcibersLookUp;
   triggeredComponent: triggeredComponent;
+  handleEvent: (key: AllowedEventsKeys) => void;
+};
+
+// export type AllowedEventsKeys =
+// | 'onOpen'
+// | 'onHover'
+export enum AllowedEventsKeys {
+  onClick = 'onClick',
+  onHover = 'onHover',
 }
+export enum AllowedCallbacks {
+  openModal = 'openModal',
+}
+
 
 export function AppProvider({ children }) {
   const js = data1;
@@ -23,6 +39,9 @@ export function AppProvider({ children }) {
   const elementTree = NodeFactory.createTreeNode(js2).getElement();
   const [subscribers, setSubscribers] = useState({});
   const [triggeredComponent, setTriggeredComponent] = useState();
+
+
+
 
   const addComponentSubscribersDictionary: (
     key: string,
@@ -33,13 +52,25 @@ export function AppProvider({ children }) {
     return subscribers[key];
   };
 
-  const handleOpenEvent = function (componentKey:string) {
+  const handleOpenEvent = function (action: Actions) {
+    const componentKey = action?.params['componentKey'];
     console.log('raised with key', componentKey);
-    subscribers[componentKey].state.isOpen = !subscribers[componentKey].state.isOpen;
+    subscribers[componentKey].state.isOpen =
+      !subscribers[componentKey].state.isOpen;
     setSubscribers(subscribers);
-    setTriggeredComponent({ key: componentKey, state: subscribers[componentKey].state });
+    setTriggeredComponent({
+      key: componentKey,
+      state: subscribers[componentKey].state,
+    });
   };
 
+  const eventLookup: { [K in AllowedCallbacks]: (action: Actions) => void } = {
+    openModal: (action: Actions) => handleOpenEvent(action),
+  };
+  const handleEvent:(action:Actions)=>()=>void=(action:Actions)=>{
+
+    return eventLookup[action.callback](action);
+  }
   return (
     <AppContext.Provider
       value={{
@@ -48,6 +79,7 @@ export function AppProvider({ children }) {
         elementTree: elementTree,
         addComponentToLookup: addComponentSubscribersDictionary,
         triggeredComponent: triggeredComponent,
+        handleEvent:handleEvent
       }}
     >
       {children}

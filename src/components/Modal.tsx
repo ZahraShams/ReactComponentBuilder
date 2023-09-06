@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../AppContext';
+import { ComponentProp } from './ComponentProp';
 
 function Modal(props:ComponentProp) {
   const { isOpen, width, height, children, nodeKey } = props;

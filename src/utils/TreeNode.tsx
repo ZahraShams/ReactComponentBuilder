@@ -1,3 +1,4 @@
+import { AllowedEventsKeys } from '../AppContext';
 import { ConversionalComponents } from '../components';
 import Box from '../components/Box';
 import Button from '../components/Button';
@@ -9,6 +10,11 @@ import Modal from '../components/Modal';
 import Paragraph from '../components/Paragraph';
 
 
+export class Actions {
+  type!: AllowedEventsKeys;
+  callback!: string;
+  params!: any;
+}
 export interface ITreeNode {
   nodeKey: string;
   props: any;
@@ -22,6 +28,7 @@ export class TreeNode implements ITreeNode {
   }
   nodeKey = '';
   props = {};
+ 
   getElement(): JSX.Element {
     return <> </>;
   }
@@ -47,8 +54,11 @@ export class ListNode extends TreeNode {
   }
 }
 export class ButtonNode extends TreeNode {
+  constructor(key: string, props: any) {
+    super(key, props);
+  }
   getElement(): JSX.Element {
-    return <Button key={this.nodeKey} {...this.props}/>;
+    return <Button key={this.nodeKey} {...this.props}  />;
   }
 }
 export class ParagraphNode extends TreeNode {

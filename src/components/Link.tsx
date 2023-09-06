@@ -1,17 +1,27 @@
 import { useEffect } from 'react';
-import { ComponentState, useApp } from '../AppContext';
+import { AllowedEventsKeys, ComponentState, useApp } from '../AppContext';
+import { ComponentProp } from './ComponentProp';
 
 function Link(props:ComponentProp) {
-  const { handleOpenEvent, addComponentToLookup, subscribers } = useApp();
-  const { text, actionOnComponentKey } = props;
+  const { handleEvent, addComponentToLookup, subscribers } = useApp();
+  const { text, actions } = props;
 
   useEffect(() => {
-    if (actionOnComponentKey && !subscribers[actionOnComponentKey])
-      addComponentToLookup(actionOnComponentKey, new ComponentState());
+    actions?.map((act) => {
+      if (
+        act?.params['componentKey'] &&
+        !subscribers[act?.params['componentKey']]
+      ) {
+        addComponentToLookup(act?.params['componentKey'], new ComponentState());
+      }
+
+      return act;
+    });
   }, []);
   const handleOnClick = () => {
-    handleOpenEvent(actionOnComponentKey);
+    handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
+
   return <a onClick={handleOnClick}>{text}</a>;
 }
 
