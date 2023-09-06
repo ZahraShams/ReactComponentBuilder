@@ -24,7 +24,7 @@ function Link(props:ComponentProp) {
     handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
 
-  return <a onClick={handleOnClick}>{text}</a>;
+  return <a  onClick={handleOnClick}>{text}</a>;
 }
 
 export default Link;

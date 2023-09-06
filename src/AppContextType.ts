@@ -1,10 +1,9 @@
 import { AllowedEventsKeys } from './AllowedEventsKeys';
 import { ComponentState } from './ComponentState';
-import { AppSubsrcibersLookUp } from './AppContext';
+import { AppSubsrcibersLookUp } from './AppSubsrcibersLookUp';
 
 export type AppContextType = {
   subscribers: AppSubsrcibersLookUp | undefined;
-  handleOpenEvent: (key: string) => void;
   elementTree: JSX.Element;
   addComponentToSubscribers: (
     key: string,

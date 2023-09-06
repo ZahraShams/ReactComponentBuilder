@@ -1,11 +1,9 @@
-import { Actions } from "../utils/TreeNode"
+import { Actions } from '../utils/Actions'
 
-export class  ComponentProp {
-    actionOnComponentKey!: string
+export class ComponentProp {
     text!: string
     borderSize!: string
     li!: string[]
-
     isOpen!: boolean
     width!: string
     height!: string

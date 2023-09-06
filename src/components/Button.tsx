@@ -8,6 +8,7 @@ function Button(props: ComponentProp) {
   const { addComponentToLookup, subscribers, handleEvent } = useApp();
   const { text, actions } = props;
 
+  //Todo : can be extracted to a separate hook and be
   useEffect(() => {
     actions?.map((act) => {
       if (
@@ -16,13 +17,11 @@ function Button(props: ComponentProp) {
       ) {
         addComponentToLookup(act?.params['componentKey'], new ComponentState());
       }
-
       return act;
     });
   }, []);
 
   const handleOnClick = () => {
-    // handleOpenEvent(actionOnComponentKey);
     handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
 

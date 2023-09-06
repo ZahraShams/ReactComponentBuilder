@@ -2,20 +2,12 @@ import React, { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import NodeFactory from './utils/NodeFactory';
-import { Actions } from './utils/TreeNode';
+import { Actions } from './utils/Actions';
 import { ComponentState } from './ComponentState';
 import { AppContextType } from './AppContextType';
+import { AllowedCallbacks } from './AllowedCallbacks';
 
-
-
-
-
-export const AppContext = createContext<AppContextType|null>(null);
-export type AppSubsrcibersLookUp = { [key: string]: { state: ComponentState } };
-export enum AllowedCallbacks {
-  openModal = 'openModal',
-}
-
+export const AppContext = createContext<AppContextType | null>(null);
 export function AppProvider({ children }) {
   const js = data1;
   const js2 = data2;
@@ -43,23 +35,30 @@ export function AppProvider({ children }) {
       state: subscribers[componentKey].state,
     });
   };
-
+  const handleAlert = function (action: Actions) {
+    const message = action?.params['message'];
+    alert(message);
+  };
   const eventLookup: { [K in AllowedCallbacks]: (action: Actions) => void } = {
     openModal: (action: Actions) => handleOpenEvent(action),
+    alert: handleAlert,
   };
-  const handleEvent:(action:Actions)=>()=>void=(action:Actions)=>{
+  const handleEvent: (action: Actions) => () => void = (action: Actions) => {
+    const mappedEvent = eventLookup[action.callback];
+    if (!mappedEvent) {
+      new Error('not impleneted');
+    }
 
     return eventLookup[action.callback](action);
-  }
+  };
   return (
     <AppContext.Provider
       value={{
         subscribers: subscribers,
-        handleOpenEvent: handleOpenEvent,
         elementTree: elementTree,
         addComponentToLookup: addComponentSubscribersDictionary,
         triggeredComponent: triggeredComponent,
-        handleEvent:handleEvent
+        handleEvent: handleEvent,
       }}
     >
       {children}

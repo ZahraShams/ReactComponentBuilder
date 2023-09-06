@@ -1,4 +1,3 @@
-import { AllowedEventsKeys } from '../AllowedEventsKeys';
 import { ConversionalComponents } from '../components';
 import Box from '../components/Box';
 import Button from '../components/Button';
@@ -10,11 +9,6 @@ import Modal from '../components/Modal';
 import Paragraph from '../components/Paragraph';
 
 
-export class Actions {
-  type!: AllowedEventsKeys;
-  callback!: string;
-  params!: any;
-}
 export interface ITreeNode {
   nodeKey: string;
   props: any;
