@@ -1,5 +1,5 @@
 import React from 'react'
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 
 function Link(props) {
   const { onOpenModals } = useApp();

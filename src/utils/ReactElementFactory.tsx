@@ -1,13 +1,13 @@
-import React from 'react';
-import Box from './Box';
-import Button from './Button';
-import H1 from './H1';
-import H2 from './H2';
-import List from './List';
-import Modal from './Modal';
-import Paragraph from './Paragraph';
-import { TreeNode } from './BST';
-import Link from './Link';
+import Box from '../components/Box';
+import Button from '../components/Button';
+import H1 from '../components/H1';
+import H2 from '../components/H2';
+import List from '../components/List';
+import Modal from '../components/Modal';
+import Paragraph from '../components/Paragraph';
+import Link from '../components/Link';
+
+import { TreeNode } from '../screens/BST';
 
 export const ReactElementFactory = function () {
   this.root = new TreeNode();

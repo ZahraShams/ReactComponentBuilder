@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 
 function Button(props) {
   const { onOpenModals } = useApp();

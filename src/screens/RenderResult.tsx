@@ -1,4 +1,4 @@
-import { useApp } from './AppContext';
+import { useApp } from "../AppContext";
 
 function RenderResult() {
 

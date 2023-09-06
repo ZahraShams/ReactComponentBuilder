@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
-import { ReactElementFactory } from './ReactElementFactory';
+import { ReactElementFactory } from './utils/ReactElementFactory';
 export const AppContext = createContext();
 export function AppProvider({ children }) {
   const js = data1;
