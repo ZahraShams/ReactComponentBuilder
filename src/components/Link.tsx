@@ -7,7 +7,7 @@ function Link(props) {
   const handleOnClick= ()=>{
     onOpenModals(actionOnComponentKey);
   }
-  return <a  onClick={handleOnClick}>{text}</a>;
+  return <a   onClick={handleOnClick}>{text}</a>;
 }
 
 export default Link

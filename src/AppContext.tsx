@@ -3,6 +3,9 @@ import data1 from '../../data.json';
 import data2 from '../../data2.json';
 import NodeFactory from './utils/NodeFactory';
 export const AppContext = createContext();
+
+
+
 export function AppProvider({ children }) {
   const js = data1;
   const js2 = data2;
@@ -13,7 +16,6 @@ export function AppProvider({ children }) {
   const addModal = function (key: String, state) {
     modals[key] = { state };
     setModals(modals);
-
     return modals[key];
   };
 

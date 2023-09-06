@@ -3,7 +3,7 @@ import { useApp } from '../AppContext';
 
 function Modal(props) {
   const { isOpen, width, height, children, nodeKey } = props;
-  const { addModal, modals, triggeredModal } = useApp();
+  const { addModal, triggeredModal } = useApp();
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
 
   useEffect(() => {
@@ -13,7 +13,8 @@ function Modal(props) {
   useEffect(() => {
     if (triggeredModal?.key === nodeKey)
       setIsModalOpen(triggeredModal?.state?.isOpen);
-  }, [triggeredModal]);
+  }, [nodeKey, triggeredModal]);
+
   return isModalOpen ? (
     <div style={{ border: '1px solid yellow', width: width, height: height }}>
       {...children}

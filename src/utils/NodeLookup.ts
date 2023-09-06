@@ -8,7 +8,7 @@ import {
     ModalNode,
     ParagraphNode,
   } from './TreeNode';
-  type AllowedKeys =
+export type AllowedKeys =
     | 'H1Component'
     | 'H2Component'
     | 'ListComponent'
