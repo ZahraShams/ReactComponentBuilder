@@ -1,4 +1,5 @@
 import { NodeLookup } from "./NodeLookup";
+import { ITreeNode } from "./TreeNode";
 
 export default class NodeFactory {
   static createTreeNode(data: any, key = 'root'): ITreeNode {

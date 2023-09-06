@@ -8,16 +8,6 @@ import List from '../components/List';
 import Modal from '../components/Modal';
 import Paragraph from '../components/Paragraph';
 
-type NodeType =
-  | 'H1Component'
-  | 'H2Component'
-  | 'ListComponent'
-  | 'ButtonComponent'
-  | 'LinkComponent'
-  | 'ParagraphComponent'
-  | 'BoxComponent'
-  | 'ModalComponent';
-
 export interface ITreeNode {
   nodeKey: string;
   props: any;
