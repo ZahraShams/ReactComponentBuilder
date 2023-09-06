@@ -1,5 +1,5 @@
-
-function List({li = []}) {
+function List(props) {
+  const { li = [] } = props;
   return (
     <ul>
       {li.map((i, index) => (
@@ -9,4 +9,4 @@ function List({li = []}) {
   );
 }
 
-export default List;   
+export default List;

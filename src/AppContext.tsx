@@ -1,13 +1,12 @@
 import { createContext, useContext, useState } from 'react';
 import data1 from '../../data.json';
 import data2 from '../../data2.json';
-import { ReactElementFactory } from './utils/ReactElementFactory';
+import NodeFactory from './utils/NodeFactory';
 export const AppContext = createContext();
 export function AppProvider({ children }) {
   const js = data1;
   const js2 = data2;
-  let factory = new ReactElementFactory();
-  factory.generateTree(js2);
+  const elementTree = NodeFactory.createTreeNode(js2).getElement();
   const [modals, setModals] = useState({});
   const [triggeredModal, setTriggeredModal] = useState();
 
@@ -30,7 +29,7 @@ export function AppProvider({ children }) {
       value={{
         modals: modals,
         onOpenModals: handleOpenModal,
-        elementTree: factory.root.value,
+        elementTree: elementTree,
         addModal: addModal,
         triggeredModal: triggeredModal,
       }}
