@@ -22,6 +22,7 @@ function Button(props: ComponentProp) {
   }, []);
 
   const handleOnClick = () => {
+    //Todo: should manage cases where multiple callback are configured for one action type eg: [onClick->openModal, onClick->alert] using filter instead of find and etc.
     handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
 
