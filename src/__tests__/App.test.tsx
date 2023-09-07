@@ -11,5 +11,11 @@ describe('<App />', () => {
     // Get by h1
     const h1 = wrapper.container.querySelector('h1')
     expect(h1?.textContent).toBe('How did you like the app?')
+      expect(
+    screen.getByText(
+      /How did you like the app/
+    )
+  ).toBeInTheDocument()
+    
   })
 });
