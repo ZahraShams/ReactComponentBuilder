@@ -1,4 +1,4 @@
-import { Actions } from '../utils/Actions'
+import { Action } from '../utils/Actions'
 
 export class ComponentProp {
     text!: string
@@ -8,6 +8,6 @@ export class ComponentProp {
     width!: string
     height!: string
     nodeKey!: string
-    actions!: Actions[]
+    actions!: Action[]
 }
 

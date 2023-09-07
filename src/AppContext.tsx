@@ -1,17 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
-import data1 from '../../data.json';
-import data2 from '../../data2.json';
+
 import NodeFactory from './utils/NodeFactory';
-import { Actions } from './utils/Actions';
+import { Action } from './utils/Actions';
 import { ComponentState } from './ComponentState';
 import { AppContextType } from './AppContextType';
 import { AllowedCallbacks } from './AllowedCallbacks';
 
 export const AppContext = createContext<AppContextType | null>(null);
-export function AppProvider({ children }) {
-  const js = data1;
-  const js2 = data2;
-  const elementTree = NodeFactory.createTreeNode(js2).getElement();
+export function AppProvider({ children, data }) {
+  
+  const elementTree = NodeFactory.createTreeNode(data).getElement();
   const [subscribers, setSubscribers] = useState({});
   const [triggeredComponent, setTriggeredComponent] = useState();
 
@@ -24,7 +22,7 @@ export function AppProvider({ children }) {
     return subscribers[key];
   };
 
-  const handleOpenEvent = function (action: Actions) {
+  const handleOpenEvent = function (action: Action) {
     const componentKey = action?.params['componentKey'];
     console.log('raised with key', componentKey);
     subscribers[componentKey].state.isOpen =
@@ -35,21 +33,22 @@ export function AppProvider({ children }) {
       state: subscribers[componentKey].state,
     });
   };
-  const handleAlert = function (action: Actions) {
+  const handleAlert = function (action: Action) {
     const message = action?.params['message'];
     alert(message);
   };
-  const eventLookup: { [K in AllowedCallbacks]: (action: Actions) => void } = {
-    openModal: (action: Actions) => handleOpenEvent(action),
+  const eventLookup: { [K in AllowedCallbacks]: (action: Action) => void } = {
+    openModal: (action: Action) => handleOpenEvent(action),
     alert: handleAlert,
   };
-  const handleEvent: (action: Actions) => () => void = (action: Actions) => {
-    const mappedEvent = eventLookup[action.callback];
+  const handleEvent: (action: Action) => () => void = 
+  (action: Action) => {
+    const mappedEvent = eventLookup[action.callback as AllowedCallbacks];
     if (!mappedEvent) {
       new Error('not impleneted');
     }
 
-    return eventLookup[action.callback](action);
+    return eventLookup[action.callback as AllowedCallbacks](action);
   };
   return (
     <AppContext.Provider

@@ -2,7 +2,7 @@ import { AllowedEventsKeys } from '../AllowedEventsKeys';
 
 
 
-export class Actions {
+export class Action {
   type!: AllowedEventsKeys;
   callback!: string;
   params!: any;

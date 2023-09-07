@@ -1,6 +1,7 @@
 import { AllowedEventsKeys } from './AllowedEventsKeys';
 import { ComponentState } from './ComponentState';
 import { AppSubsrcibersLookUp } from './AppSubsrcibersLookUp';
+import { Action } from './utils/Actions';
 
 export type AppContextType = {
   subscribers: AppSubsrcibersLookUp | undefined;
@@ -8,7 +9,7 @@ export type AppContextType = {
   addComponentToSubscribers: (
     key: string,
     state: ComponentState
-  ) => AppSubsrcibersLookUp;
+  ) => void;
   triggeredComponent: triggeredComponent;
-  handleEvent: (key: AllowedEventsKeys) => void;
+  handleEvent: (action: Action) => void;
 };

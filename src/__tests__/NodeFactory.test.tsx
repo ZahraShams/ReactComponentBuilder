@@ -3,7 +3,7 @@ import NodeFactory from '../utils/NodeFactory';
 import { ImplementationError } from '../utils/errors';
 
 describe('Fail_Node_Factory', () => {
-  it('Should fail because component in sample data is not implemented for rendering', () => {
+  it('Should fail because TableComponent component in sample data is not implemented for rendering', () => {
     //Arrange
     const sampleData = {
       Content: {
@@ -32,3 +32,4 @@ describe('Fail_Node_Factory', () => {
     );
   });
 });
+
