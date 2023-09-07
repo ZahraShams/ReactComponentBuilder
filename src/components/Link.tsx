@@ -6,7 +6,7 @@ import { ComponentProp } from './ComponentProp';
 
 function Link(props:ComponentProp) {
   const { handleEvent, addComponentToLookup, subscribers } = useApp();
-  const { text, actions } = props;
+  const { text, actions, nodeKey } = props;
 
   useEffect(() => {
     actions?.map((act) => {
@@ -24,7 +24,7 @@ function Link(props:ComponentProp) {
     handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
 
-  return <a  onClick={handleOnClick}>{text}</a>;
+  return <a id={nodeKey} onClick={handleOnClick}>{text}</a>;
 }
 
 export default Link;

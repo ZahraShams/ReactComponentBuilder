@@ -29,22 +29,22 @@ export class TreeNode implements ITreeNode {
 }
 export class H1Node extends TreeNode {
   getElement(): JSX.Element {
-    return <H1 key={this.nodeKey} {...this.props} />;
+    return <H1 key={this.nodeKey} nodeKey={this.nodeKey} {...this.props} />;
   }
 }
 export class H2Node extends TreeNode {
   getElement(): JSX.Element {
-    return <H2 key={this.nodeKey} {...this.props} />;
+    return <H2 key={this.nodeKey} nodeKey={this.nodeKey} {...this.props} />;
   }
 }
 export class LinkNode extends TreeNode {
   getElement(): JSX.Element {
-    return <Link key={this.nodeKey} {...this.props}/>;
+    return <Link key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}/>;
   }
 }
 export class ListNode extends TreeNode {
   getElement(): JSX.Element {
-    return <List key={this.nodeKey} {...this.props}/>;
+    return <List key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}/>;
   }
 }
 export class ButtonNode extends TreeNode {
@@ -52,12 +52,12 @@ export class ButtonNode extends TreeNode {
     super(key, props);
   }
   getElement(): JSX.Element {
-    return <Button key={this.nodeKey} {...this.props}  />;
+    return <Button key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}  />;
   }
 }
 export class ParagraphNode extends TreeNode {
   getElement(): JSX.Element {
-    return <Paragraph key={this.nodeKey} {...this.props}/>;
+    return <Paragraph key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}/>;
   }
 }
 export class BoxNode extends TreeNode {
@@ -68,7 +68,7 @@ export class BoxNode extends TreeNode {
   children: JSX.Element[];
   getElement(): JSX.Element {
     return (
-      <Box key={this.nodeKey} {...this.props}>
+      <Box key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}>
         {this.children}
       </Box>
     );

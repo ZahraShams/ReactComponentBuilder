@@ -5,7 +5,7 @@ import { AllowedEventsKeys } from '../AllowedEventsKeys';
 import { ComponentProp } from './ComponentProp';
 
 function Button(props: ComponentProp) {
-  const { addComponentToLookup, subscribers, handleEvent } = useApp();
+  const { addComponentToLookup, subscribers, handleEvent, nodeKey } = useApp();
   const { text, actions } = props;
 
   //Todo : can be extracted to a separate hook and be
@@ -26,7 +26,7 @@ function Button(props: ComponentProp) {
     handleEvent(actions.find((a) => a.type === AllowedEventsKeys.onClick));
   };
 
-  return <button onClick={handleOnClick}>{text}</button>;
+  return <button id={nodeKey} onClick={handleOnClick}>{text}</button>;
 }
 
 export default Button;

@@ -1,8 +1,8 @@
 import { ComponentProp } from "./ComponentProp";
 
 function Paragraph(props:ComponentProp) {
-  const { text } = props;
-    return <p>{text}</p>;
+  const { text, nodeKey } = props;
+    return <p id ={nodeKey}>{text}</p>;
   }
 
 export default Paragraph
