@@ -10,9 +10,9 @@ describe('<App />', () => {
     expect(wrapper).toBeTruthy();
 
     // Act
-    const h1 = wrapper.container.querySelector('h1');
+    const a = wrapper.container.querySelector('a');
     //Assert
-    expect(h1?.textContent).toBe('How did you like the app?');
-    expect(screen.getByText(/How did you like the app/)).toBeInTheDocument();
+    expect(a?.textContent).toBe('I open a link but I should also alert.');
+    expect(screen.getByText(/I open a link but I should also alert./)).toBeInTheDocument();
   });
 });
