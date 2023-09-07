@@ -2,8 +2,8 @@ import './App.css';
 
 import { AppProvider } from './AppContext';
 import RenderResult from './screens/RenderResult';
-import data1 from '../../data.json';
-import data2 from '../../data2.json';
+import data1 from '../data.json';
+import data2 from '../data2.json';
 
 function App() {
 
