@@ -6,7 +6,11 @@ import data1 from '../data.json';
 import data2 from '../data2.json';
 
 function App() {
+/* I temporarily used same files statically for required JSON structure
 
+I modified data2.json according to project requirement related to : adding behavior to components
+
+*/
   const js = data1;
   const js2 = data2;
   return (

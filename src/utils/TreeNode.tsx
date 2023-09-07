@@ -1,4 +1,3 @@
-import { ConversionalComponents } from '../components';
 import Box from '../components/Box';
 import Button from '../components/Button';
 import H1 from '../components/H1';
@@ -60,6 +59,9 @@ export class ParagraphNode extends TreeNode {
     return <Paragraph key={this.nodeKey} nodeKey={this.nodeKey} {...this.props}/>;
   }
 }
+
+/*This type of node need 1 extra property named: 
+children(the name describes its usage) and also `getElement` behavior uses component composition to render its children */
 export class BoxNode extends TreeNode {
   constructor(key: string, props: any,children: JSX.Element[]) {
     super(key,props);
@@ -74,6 +76,8 @@ export class BoxNode extends TreeNode {
     );
   }
 }
+/*This type of node need 1 extra property named: 
+children(the name describes its usage) and also `getElement` behavior uses component composition to render its children */
 export class ModalNode extends TreeNode {
   constructor(key: string, props: any,children: JSX.Element[]) {
     super(key,props);

@@ -1,4 +1,3 @@
-import { AllowedEventsKeys } from './AllowedEventsKeys';
 import { ComponentState } from './ComponentState';
 import { AppSubsrcibersLookUp } from './AppSubsrcibersLookUp';
 import { Action } from './utils/Actions';
