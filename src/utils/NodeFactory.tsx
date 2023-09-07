@@ -1,9 +1,11 @@
-import { NodeLookup } from './NodeLookup';
+import { AllowedEventsKeys } from '../AllowedEventsKeys';
+import { AllowedKeys, NodeLookup } from './NodeLookup';
 import { ITreeNode } from './TreeNode';
+import { ImplementationError } from './errors';
 
 export default class NodeFactory {
   static createTreeNode(data: any, key = 'root'): ITreeNode {
-    let { Content, Children } = data;
+    const { Content, Children } = data;
     let children: JSX.Element[] = [];
     if (Children) {
       let i = 0;
@@ -14,10 +16,21 @@ export default class NodeFactory {
         i++;
       }
     }
-    return new NodeLookup[Content.type](
-      key,
-      Content?.props,
-      children
-    );
+    if (NodeLookup[Content.type as AllowedKeys]) {
+      return new NodeLookup[Content.type as AllowedKeys](
+        key,
+        Content?.props,
+        children
+      );
+    } else
+     { 
+      throw new ImplementationError({
+        name: 'NotImplementated',
+        message: `type ${Content.type} is not implemented`,
+      });
+      
+    }
+    
+   
   }
 }
