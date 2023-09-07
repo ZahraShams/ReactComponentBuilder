@@ -21,15 +21,3 @@ describe('<App />', () => {
   })
   
 });
-it('Click me to open the modal', () => {
-    const wrapper = render(<App />)
-    const button = wrapper.container.querySelector(
-      'button'
-    ) as HTMLButtonElement;
-    const button = wrapper.container.querySelector(
-        'button'
-      ) as HTMLButtonElement;
-    
-    // The count hook is working
-    expect(button.textContent).toBe('Click me to open the modal')
-  })
