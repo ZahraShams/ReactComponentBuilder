@@ -13,7 +13,7 @@ function Modal(props:ComponentProp) {
   }, [nodeKey, triggeredComponent]);
 
   return isModalOpen ? (
-    <div style={{ border: '1px solid yellow', width: width, height: height }}>
+    <div id={nodeKey} style={{ border: '1px solid yellow', width: width, height: height }}>
       {...children}
     </div>
   ) : undefined;

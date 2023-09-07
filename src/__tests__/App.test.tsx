@@ -1,6 +1,7 @@
 
-import { describe, test, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, test, expect, it } from 'vitest'
+import { render, screen, fireEvent, getByText } from '@testing-library/react'
+
 import App from '../App';
 
 describe('<App />', () => {
@@ -18,4 +19,17 @@ describe('<App />', () => {
   ).toBeInTheDocument()
     
   })
+  
 });
+it('Click me to open the modal', () => {
+    const wrapper = render(<App />)
+    const button = wrapper.container.querySelector(
+      'button'
+    ) as HTMLButtonElement;
+    const button = wrapper.container.querySelector(
+        'button'
+      ) as HTMLButtonElement;
+    
+    // The count hook is working
+    expect(button.textContent).toBe('Click me to open the modal')
+  })
