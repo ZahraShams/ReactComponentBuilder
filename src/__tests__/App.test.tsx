@@ -12,7 +12,7 @@ describe('<App />', () => {
     // Act
     const a = wrapper.container.querySelector('a');
     //Assert
-    expect(a?.textContent).toBe('I open a link but I should also alert.');
-    expect(screen.getByText(/I open a link but I should also alert./)).toBeInTheDocument();
+    expect(a?.textContent).toBe('I should alert.');
+    expect(screen.getByText(/I should alert./)).toBeInTheDocument();
   });
 });

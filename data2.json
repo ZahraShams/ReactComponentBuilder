@@ -66,7 +66,7 @@
 						"type": "LinkComponent",
 						"props": {
 							"url": "https://lmgtfy.com/",
-							"text": "I open a link but I should also alert.",
+							"text": "I should alert.",
 							"actions": [
 								{
 									"type": "onClick",
